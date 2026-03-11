@@ -1,0 +1,13 @@
+# Kustomization para aplicar todos os recursos
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: fcg
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - postgres-deployment.yaml
+  - deployment.yaml
+  - service.yaml

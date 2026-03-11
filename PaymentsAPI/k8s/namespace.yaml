@@ -1,0 +1,7 @@
+# Namespace para isolar recursos do PaymentsAPI
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fcg
+  labels:
+    app.kubernetes.io/name: fiap-cloud-games

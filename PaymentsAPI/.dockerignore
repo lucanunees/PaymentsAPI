@@ -1,0 +1,30 @@
+# Diretórios de build
+**/bin/
+**/obj/
+**/out/
+
+# Arquivos de configuração local
+**/.vs/
+**/.idea/
+**/*.user
+**/*.suo
+
+# Git
+.git
+.gitignore
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+
+# Kubernetes
+**/k8s/
+
+# Documentação
+**/*.md
+
+# Testes
+**/TestResults/
+
+# Logs
+**/*.log

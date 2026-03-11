@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  payments-db:
+    image: postgres:16-alpine
+    container_name: payments-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: payments
+      POSTGRES_PASSWORD: paymentspw
+      POSTGRES_DB: fcg_payments_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - payments_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U payments -d fcg_payments_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  payments-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payments-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      # Conexão com Postgres (container interno)
+      ConnectionStrings__Default: "Host=payments-db;Port=5432;Database=fcg_payments_db;Username=payments;Password=paymentspw"
+      # RabbitMQ externo - ajuste conforme seu ambiente
+      RabbitMq__Host: ${RABBITMQ_HOST:-host.docker.internal}
+      RabbitMq__Username: ${RABBITMQ_USER:-guest}
+      RabbitMq__Password: ${RABBITMQ_PASSWORD:-guest}
+      RabbitMq__VirtualHost: ${RABBITMQ_VHOST:-/}
+      # Configuração de simulação de pagamento
+      PaymentSimulation__ApprovalRatePercent: 80
+    depends_on:
+      payments-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  payments_postgres_data:
+    driver: local

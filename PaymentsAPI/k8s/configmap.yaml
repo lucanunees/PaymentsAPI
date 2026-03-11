@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payments-api-config
+  namespace: fcg
+  labels:
+    app: payments-api
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:8080"
+  # Configurações de mensageria (nomes de filas/exchanges)
+  RabbitMq__VirtualHost: "/"
+  # Taxa de aprovação do pagamento (simulação)
+  PaymentSimulation__ApprovalRatePercent: "80"

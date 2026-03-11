@@ -1,0 +1,97 @@
+# Deployment do PostgreSQL para PaymentsAPI
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-db
+  namespace: fcg
+  labels:
+    app: payments-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments-db
+  template:
+    metadata:
+      labels:
+        app: payments-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "payments"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: payments-db-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              value: "fcg_payments_db"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "payments", "-d", "fcg_payments_db"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "payments", "-d", "fcg_payments_db"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: payments-db-pvc
+---
+# Service do PostgreSQL
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-db
+  namespace: fcg
+  labels:
+    app: payments-db
+spec:
+  type: ClusterIP
+  selector:
+    app: payments-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+# Secret do PostgreSQL
+apiVersion: v1
+kind: Secret
+metadata:
+  name: payments-db-secrets
+  namespace: fcg
+type: Opaque
+data:
+  # paymentspw em base64
+  POSTGRES_PASSWORD: cGF5bWVudHNwdw==
+---
+# PersistentVolumeClaim para dados do PostgreSQL
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: payments-db-pvc
+  namespace: fcg
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
