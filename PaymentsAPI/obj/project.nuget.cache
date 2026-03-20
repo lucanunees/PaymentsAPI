@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gfTnhLGkCno=",
+  "dgSpecHash": "SaEgw0Mm6TE=",
   "success": true,
-  "projectFilePath": "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
+  "projectFilePath": "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
   "expectedPackageFiles": [
+    "/home/marco/.nuget/packages/fiapcloudgames2026.contracts/1.0.0/fiapcloudgames2026.contracts.1.0.0.nupkg.sha512",
     "/home/marco/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/marco/.nuget/packages/masstransit/8.0.11/masstransit.8.0.11.nupkg.sha512",
     "/home/marco/.nuget/packages/masstransit.abstractions/8.0.11/masstransit.abstractions.8.0.11.nupkg.sha512",
@@ -43,7 +44,6 @@
     "/home/marco/.nuget/packages/npgsql/8.0.6/npgsql.8.0.6.nupkg.sha512",
     "/home/marco/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.11/npgsql.entityframeworkcore.postgresql.8.0.11.nupkg.sha512",
     "/home/marco/.nuget/packages/rabbitmq.client/6.4.0/rabbitmq.client.6.4.0.nupkg.sha512",
-    "/home/marco/.nuget/packages/seuorg.contracts/1.0.0/seuorg.contracts.1.0.0.nupkg.sha512",
     "/home/marco/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "/home/marco/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "/home/marco/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",

@@ -13,6 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - payments_postgres_data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U payments -d fcg_payments_db"]
       interval: 10s

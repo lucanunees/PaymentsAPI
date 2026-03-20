@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj": {}
+    "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj": {}
   },
   "projects": {
-    "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj": {
+    "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
+        "projectUniqueName": "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
         "projectName": "PaymentsAPI",
-        "projectPath": "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
+        "projectPath": "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/PaymentsAPI.csproj",
         "packagesPath": "/home/marco/.nuget/packages/",
-        "outputPath": "/home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/obj/",
+        "outputPath": "/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/marco/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,6 @@
           "net8.0"
         ],
         "sources": {
-          "/usr/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FIAPCloudGames2026.Contracts": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "MassTransit": {
               "target": "Package",
               "version": "[8.0.11, )"
@@ -74,10 +77,6 @@
               "target": "Package",
               "version": "[8.0.11, )"
             },
-            "SeuOrg.Contracts": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -102,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/marco/.dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

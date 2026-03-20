@@ -244,3 +244,6 @@
 /home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/PaymentsAPI.pdb
 /home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/PaymentsAPI.genruntimeconfig.cache
 /home/marco/POS/payments-api/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/ref/PaymentsAPI.dll
+/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/PaymentsAPI.dll
+/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/refint/PaymentsAPI.dll
+/home/marco/FIAP-POS/PaymentsAPI/PaymentsAPI/obj/Debug/net8.0/PaymentsAPI.pdb
