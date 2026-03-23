@@ -22,8 +22,8 @@ services:
 
   payments-api:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: PaymentsAPI/Dockerfile
     container_name: payments-api
     restart: unless-stopped
     ports:

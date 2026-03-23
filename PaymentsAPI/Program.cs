@@ -11,6 +11,13 @@ builder.Services.AddDbContext<PaymentsDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
+// Aplicar migrations ANTES de configurar MassTransit
+using (var tempProvider = builder.Services.BuildServiceProvider())
+{
+    var db = tempProvider.GetRequiredService<PaymentsDbContext>();
+    db.Database.Migrate();
+}
+
 # region MassTransit
 builder.Services.AddMassTransit(x =>
 {
