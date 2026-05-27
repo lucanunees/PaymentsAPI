@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FCGLibCache" Version="1.0.1" />
         <PackageReference Include="FIAPCloudGames2026.Contracts" Version="1.0.0" />
         <PackageReference Include="MassTransit" Version="8.0.11" />
         <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.11" />
@@ -18,6 +19,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.11" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+        <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
 

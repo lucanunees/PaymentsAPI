@@ -3,6 +3,7 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using PaymentsAPI.Domain.Entities;
 using PaymentsAPI.Infrastructure.Persistence;
+using PaymentsAPI.Metrics;
 
 namespace PaymentsAPI.Consumers;
 
@@ -63,7 +64,9 @@ public class OrderPlacedConsumer : IConsumer<OrderPlacedEventV1>
         });
 
         await _db.SaveChangesAsync();
-        
+
+        AppMetrics.PaymentsProcessed.WithLabels(payment.Status.ToString()).Inc();
+
         _logger.LogInformation("Payment processed: OrderId={OrderId}, Status={Status}", payment.OrderId,
             payment.Status);
     }
