@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payments-api
-  namespace: fcg
+  namespace: fcg-tech-fase-2
   labels:
     app: payments-api
 spec:
@@ -14,13 +14,17 @@ spec:
     metadata:
       labels:
         app: payments-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
         - name: payments-api
-          image: payments-api:latest
-          imagePullPolicy: IfNotPresent
+          image: davidjmarinho/payments-api:v2
+          imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 80
               protocol: TCP
           # Variáveis do ConfigMap
           envFrom:
@@ -48,11 +52,21 @@ spec:
                 secretKeyRef:
                   name: payments-api-secrets
                   key: RabbitMq__Password
+            # ─── Redis Cache ────────────────────────────
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secret
+                  key: password
           # Health checks
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 80
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
@@ -60,7 +74,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 80
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 3

@@ -19,6 +19,24 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - payments-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: payments-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - payments-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   payments-api:
     build:
@@ -40,9 +58,17 @@ services:
       RabbitMq__VirtualHost: ${RABBITMQ_VHOST:-/}
       # Configuração de simulação de pagamento
       PaymentSimulation__ApprovalRatePercent: 80
+      # Redis Cache
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
     depends_on:
       payments-db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - payments-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 30s
@@ -50,6 +76,12 @@ services:
       retries: 3
       start_period: 40s
 
+networks:
+  payments-network:
+    driver: bridge
+
 volumes:
   payments_postgres_data:
+    driver: local
+  redis-data:
     driver: local

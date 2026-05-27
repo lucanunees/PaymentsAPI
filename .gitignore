@@ -1,0 +1,45 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+## Visual Studio
+.vs/
+*.dbmdl
+*.jfm
+launchSettings.json
+
+## Rider
+.idea/
+*.sln.iml
+
+## macOS
+.DS_Store
+
+## Environment
+*.env
+appsettings.*.local.json
+PaymentsAPI/docs/IMPLEMENTACAO_CACHE_E_GATEWAY.md
+PaymentsAPI/docs/PUBLICACAO_E_USO.md
+PaymentsAPI/docs/IMPLEMENTACAO_USERSAPI_REFERENCIA.md
+PaymentsAPI/docs/INTEGRACAO_CACHE_KONG_PROMETHEUS.md
+PaymentsAPI/docs/prometheus-setup.md
+PaymentsAPI/docs/UTILIZACAO_NAS_APIS.md
